@@ -63,6 +63,7 @@
     background: #bbbbbb;
     line-height: 40px;
     text-align: center;
+    text-transform: uppercase;
   }
 
   .dropdown-item {
