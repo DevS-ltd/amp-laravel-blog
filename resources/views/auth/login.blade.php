@@ -46,17 +46,15 @@
             </div>
 
             <div class="form__group">
-              <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn__primary">
-                  {{ __('Login') }}
-                </button>
+              <button type="submit" class="btn btn__primary">
+                {{ __('Login') }}
+              </button>
 
-                @if (Route::has('password.request'))
-                  <a class="btn btn__link" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                  </a>
-                @endif
-              </div>
+              @if (Route::has('password.request'))
+                <a class="btn btn__link" href="{{ route('password.request') }}">
+                  {{ __('Forgot Your Password?') }}
+                </a>
+              @endif
             </div>
           </form>
         </div>
