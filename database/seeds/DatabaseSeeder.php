@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        if (Category::count() === 0) {
+            $this->call(CategoriesTableSeeder::class);
+        }
+        if (User::count() === 0) {
+            $this->call(UsersTableSeeder::class);
+        }
     }
 }
