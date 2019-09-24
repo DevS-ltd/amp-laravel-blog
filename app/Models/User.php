@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use Notifiable;
+    use Notifiable,
+        HasMediaTrait;
+
+    const AVATAR = 'avatar';
 
     /**
      * The attributes that are mass assignable.

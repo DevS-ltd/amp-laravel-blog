@@ -1,8 +1,9 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Category;
 use Faker\Generator as Faker;
 
 /*
@@ -16,16 +17,16 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => bcrypt('password'),
-        'remember_token' => Str::random(10),
+        'title' => $faker->sentence,
+        'annotation' => $faker->paragraph,
+        'content' => $faker->text(10000),
+        'user_id' => User::inRandomOrder()->first()->id,
     ];
 });
 
-$factory->afterCreating(User::class, function ($post, $faker) {
-    $post->addMediaFromUrl($faker->imageUrl(160, 160, 'people'))->toMediaCollection(User::AVATAR);
+$factory->afterCreating(Post::class, function ($post, $faker) {
+    $post->categories()->attach(Category::inRandomOrder()->first());
+    $post->addMediaFromUrl($faker->imageUrl())->toMediaCollection(Post::PREVIEW);
 });
