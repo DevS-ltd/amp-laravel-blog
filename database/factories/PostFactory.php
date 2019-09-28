@@ -23,6 +23,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'annotation' => $faker->paragraph,
         'content' => $faker->text(10000),
         'user_id' => User::inRandomOrder()->first()->id,
+        'published' => true,
     ];
 });
 

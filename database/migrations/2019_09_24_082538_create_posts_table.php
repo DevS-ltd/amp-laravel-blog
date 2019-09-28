@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('annotation');
             $table->text('content');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('published')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

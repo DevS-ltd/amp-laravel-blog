@@ -24,5 +24,6 @@ class Post extends Model implements HasMedia
         'annotation',
         'content',
         'user_id',
+        'published',
     ];
 }
