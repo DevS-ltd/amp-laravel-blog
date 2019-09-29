@@ -18,7 +18,7 @@ class CreatePostRequest extends Request
             'title' => 'required|string|max:255',
             'annotation' => 'required|string',
             'content' => 'required|string',
-            'published' => 'required|boolean',
+            'published' => 'boolean',
             'categories' => 'required|array|min:1',
             'categories.*' => 'exists:'.(new Category)->getTable().',id',
             'images' => 'required|array|min:1',

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Manage;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Requests\Post\GetPostsListRequest;
 
 class PostController extends Controller
 {
@@ -17,11 +19,24 @@ class PostController extends Controller
     /**
      * Display a listing of the post.
      *
-     * @return \Illuminate\Http\Response
+     * @param  GetPostsListRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(GetPostsListRequest $request)
     {
-        //
+        $posts = QueryBuilder::for(Post::class)
+            ->allowedFilters([
+                'title',
+            ])
+            ->defaultSort('-id')
+            ->allowedSorts(['id', 'title'])
+            ->byUser(auth()->id())
+            ->paginate($request->input('per_page', 10));
+        $posts->appends($request->validated())->links();
+
+        return view('manage.posts.list', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
