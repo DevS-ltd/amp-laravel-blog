@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->except(['index', 'show']);
+        $this->middleware(['verified'])->except(['index']);
     }
 
     /**
@@ -70,7 +70,9 @@ class PostController extends Controller
             $post->addMedia($file)->toMediaCollection(Post::PREVIEW);
         }
 
-        return redirect()->route('manage.posts.index');
+        return redirect()
+            ->route('manage.posts.index')
+            ->with('message', trans('manage.posts.created'));
     }
 
     /**
@@ -110,11 +112,16 @@ class PostController extends Controller
     /**
      * Remove the specified post from storage.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()
+            ->route('manage.posts.index')
+            ->with('message', trans('manage.posts.deleted'));
     }
 }
