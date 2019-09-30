@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Requests\Post;
+
+use App\Models\Category;
+use App\Http\Requests\BaseRequest as Request;
+
+class UpdatePostRequest extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return $this->post->user_id === auth()->id();
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'annotation' => 'required|string',
+            'content' => 'required|string',
+            'published' => 'boolean',
+            'categories' => 'required|array|min:1',
+            'categories.*' => 'exists:'.(new Category)->getTable().',id',
+            'images' => 'array',
+            'images.*' => 'image|max:10240',
+        ];
+    }
+}

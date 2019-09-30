@@ -17,6 +17,21 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::prefix('manage')
+    ->namespace('Manage')
+    ->name('manage.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/', function () {
+            return redirect()->route('manage.posts.index');
+        });
+
+        Route::resource('posts', 'PostController')->expect('show');
+
+        Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
+        Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');
+    });
+
 Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware(['verified', 'auth']);
