@@ -26,7 +26,7 @@ Route::prefix('manage')
             return redirect()->route('manage.posts.index');
         });
 
-        Route::resource('posts', 'PostController');
+        Route::resource('posts', 'PostController')->expect('show');
 
         Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
         Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');

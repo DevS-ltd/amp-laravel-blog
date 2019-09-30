@@ -77,17 +77,6 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified post.
-     *
-     * @param Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified post.
      *
      * @param Post $post
