@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Upload;
+namespace App\Http\Requests\Image;
 
 use App\Http\Requests\BaseRequest as Request;
 
@@ -14,7 +14,7 @@ class UploadImageRequest extends Request
     public function rules()
     {
         return [
-            'upload' => 'required|image|max:10240'
+            'upload' => 'required|image|max:10240',
         ];
     }
 }

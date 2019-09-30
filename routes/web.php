@@ -28,7 +28,8 @@ Route::prefix('manage')
 
         Route::resource('posts', 'PostController');
 
-        Route::post('upload/image', 'UploadController@ckeditorImage')->name('upload.ckeditor-image');
+        Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
+        Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');
     });
 
 Route::get('/home', function () {

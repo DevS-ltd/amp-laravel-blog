@@ -5,8 +5,18 @@ namespace App\Http\Requests\Post;
 use App\Models\Category;
 use App\Http\Requests\BaseRequest as Request;
 
-class CreatePostRequest extends Request
+class UpdatePostRequest extends Request
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return $this->post->user_id === auth()->id();
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

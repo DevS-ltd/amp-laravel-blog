@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Posts List')
+@section('title', trans('manage.posts.titles.list'))
 
 @section('content_header')
-  <h1>Posts List</h1>
+  <h1>{{ trans('manage.posts.titles.list') }}</h1>
 @stop
 
 @section('content')
@@ -16,29 +16,31 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">My Posts</h3>
-          <a href="{{ route('manage.posts.create') }}" class="btn btn-primary btn-sm">New Post</a>
+          <h3 class="box-title">{{ trans('manage.posts.titles.myPosts') }}</h3>
+          <a href="{{ route('manage.posts.create') }}" class="btn btn-primary btn-sm">
+            {{ trans('manage.general.new') }} {{ trans('manage.posts.name.singular') }}
+          </a>
         </div>
         <div class="box-body">
           <div class="dataTables_wrapper form-inline">
             <div class="row">
               <div class="col-sm-6">
                 <div class="dataTables_length">
-                  <label>Show <select name="per_page"
-                                      class="form-control input-sm"
-                                      onchange="updatePerPage(event)">
+                  <label>{{ trans('manage.general.show') }} <select name="per_page"
+                                                                    class="form-control input-sm"
+                                                                    onchange="updatePerPage(event)">
                       <option value="10" @if(app('request')->input('per_page') === '10') selected @endif>10</option>
                       <option value="25" @if(app('request')->input('per_page') === '25') selected @endif>25</option>
                       <option value="50" @if(app('request')->input('per_page') === '50') selected @endif>50</option>
                       <option value="100" @if(app('request')->input('per_page') === '100') selected @endif>100</option>
-                    </select> entries
+                    </select> {{ trans('manage.general.entries') }}
                   </label>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="dataTables_filter">
                   <form onsubmit="updateFilter(event)">
-                    <label>Search:
+                    <label>{{ trans('manage.general.search') }}:
                       <input id="filter"
                              class="form-control input-sm"
                              value="{{ app('request')->input('filter.title') }}">
@@ -53,7 +55,7 @@
                   <thead>
                   <tr role="row">
                     <th class="@if(!!app('request')->input('sort'))
-                      @if(app('request')->input('sort') === 'id')
+                    @if(app('request')->input('sort') === 'id')
                         sorting_asc
                       @elseif(app('request')->input('sort') === '-id')
                         sorting_desc
@@ -61,9 +63,9 @@
                         sorting
                       @endif
                     @else
-                      sorting_desc
-                    @endif" onClick="sortData('id')">
-                      Id
+                        sorting_desc
+@endif" onClick="sortData('id')">
+                      {{ trans('manage.posts.fields.id') }}
                     </th>
                     <th class="@if(app('request')->input('sort') === 'title')
                         sorting_asc
@@ -72,11 +74,11 @@
                       @else
                         sorting
                       @endif" onClick="sortData('title')">
-                      Title
+                      {{ trans('manage.posts.fields.title') }}
                     </th>
-                    <th>Published</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>{{ trans('manage.posts.fields.published') }}</th>
+                    <th>{{ trans('manage.posts.fields.createdAt') }}</th>
+                    <th>{{ trans('manage.general.actions') }}</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -92,7 +94,7 @@
                           <i class="fa fa-fw fa-edit"></i>
                         </a>
                         <a href="{{ route('manage.posts.destroy', ['id' => $post->id]) }}"
-                           onclick="event.preventDefault();document.getElementById('remove-form-{{ $post->id }}').submit();">
+                           onclick="event.preventDefault();$('#remove-modal-{{ $post->id }}').modal('show');">
                           <i class="fa fa-trash"></i>
                         </a>
                         <form id="remove-form-{{ $post->id }}"
@@ -102,6 +104,15 @@
                           @csrf
                           @method('DELETE')
                         </form>
+                        @include('components.modal', [
+                          'id' => "remove-modal-{$post->id}",
+                          'header' => '<h4 class="modal-title">'.trans('manage.posts.modals.delete.title').'</h4>',
+                          'body' => '<p>'.trans('manage.posts.modals.delete.body').'</p>',
+                          'confirmButton' => "<button type='button'
+                                        class='btn btn-danger'
+                                        onclick='document.getElementById(\"remove-form-{$post->id}\").submit();'
+                                      >".trans('manage.posts.modals.delete.button')."</button>",
+                        ])
                       </td>
                     </tr>
                   @endforeach
@@ -109,11 +120,11 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Published</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>{{ trans('manage.posts.fields.id') }}</th>
+                    <th>{{ trans('manage.posts.fields.title') }}</th>
+                    <th>{{ trans('manage.posts.fields.published') }}</th>
+                    <th>{{ trans('manage.posts.fields.createdAt') }}</th>
+                    <th>{{ trans('manage.general.actions') }}</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -122,7 +133,9 @@
             <div class="row">
               <div class="col-sm-5">
                 <div class="dataTables_info">
-                  Showing {{ $posts->firstItem() }} to {{ $posts->lastItem() }} of {{ $posts->total() }} entries
+                  {{ trans('manage.general.showing') }} {{ $posts->firstItem() }} {{ trans('manage.general.to') }}
+                  {{ $posts->lastItem() }} {{ trans('manage.general.of') }} {{ $posts->total() }}
+                  {{ trans('manage.general.entries') }}
                 </div>
               </div>
               <div class="col-sm-7">
@@ -162,7 +175,7 @@
 
       updateSearchParams();
     }
-    
+
     function updateFilter(e) {
       e.preventDefault();
 
@@ -181,7 +194,7 @@
     function updateSearchParams() {
       form.innerHTML = '';
 
-      for (let param of Object.keys(urlParams) ) {
+      for (let param of Object.keys(urlParams)) {
         const input = document.createElement('input');
 
         input.setAttribute('name', param);

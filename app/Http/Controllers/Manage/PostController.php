@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 use App\Http\Requests\Post\GetPostsListRequest;
 
 class PostController extends Controller
@@ -89,24 +90,38 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified post.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('manage.posts.edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
      * Update the specified post in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdatePostRequest $request
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+
+        $post->categories()->sync($request->get('categories'));
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $post->addMedia($file)->toMediaCollection(Post::PREVIEW);
+            }
+        }
+
+        return redirect()
+            ->route('manage.posts.index')
+            ->with('message', trans('manage.posts.updated'));
     }
 
     /**

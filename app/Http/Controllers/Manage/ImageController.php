@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Manage;
 
 use App\Traits\FileUpload;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Upload\UploadImageRequest;
+use Spatie\MediaLibrary\Models\Media;
+use App\Http\Requests\Image\DeleteMediaRequest;
+use App\Http\Requests\Image\UploadImageRequest;
 
-class UploadController extends Controller
+class ImageController extends Controller
 {
     use FileUpload;
 
@@ -16,12 +18,12 @@ class UploadController extends Controller
     }
 
     /**
-     * Upload images.
+     * Upload ckeditor images.
      *
      * @param UploadImageRequest $request
      * @return string
      */
-    public function ckeditorImage(UploadImageRequest $request)
+    public function uploadCkeditorImage(UploadImageRequest $request)
     {
         $this->setDisk('public');
         $filePath = $this->handleUploadedFile($request->file('upload'));
@@ -37,5 +39,22 @@ class UploadController extends Controller
                 'Content-type: text/html; charset=utf-8',
             ]
         );
+    }
+
+    /**
+     * Delete media files.
+     *
+     * @param DeleteMediaRequest $request
+     * @param Media $media
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function deleteMedia(DeleteMediaRequest $request, Media $media)
+    {
+        $media->delete();
+
+        return response([
+            'message' => trans('images.deleted'),
+        ]);
     }
 }
