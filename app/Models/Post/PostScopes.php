@@ -15,4 +15,14 @@ trait PostScopes
     {
         return $query->where('user_id', $user_id);
     }
+    /**
+     * Get Published Posts
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
 }

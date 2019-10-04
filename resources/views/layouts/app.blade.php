@@ -11,8 +11,10 @@
 
   <!-- Scripts -->
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <script custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js" async=""></script>
-  <script custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js" async=""></script>
+  <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+  <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+  <script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito|Lilita+One" rel="stylesheet">
@@ -22,8 +24,8 @@
   @include('css.generalCSS')
 </head>
 <body>
+@include('components.header')
 <div id="app">
-  @include('components.header')
 
   <main class="content__wrapper">
     @yield('content')

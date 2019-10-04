@@ -1,4 +1,4 @@
-<form class="search-form flex" action="">
-  <input class="search__input form__control" name="search" placeholder="Search posts">
+<form class="search-form flex" action="{{ route('posts.index') }}" method="GET">
+  <input class="search__input form__control" name="filter[title]" placeholder="Search posts">
   <input class="search__button btn btn__primary" type="submit" value="Search">
 </form>

@@ -3,12 +3,21 @@
     font-family: 'Nunito', sans-serif;
   }
 
+  a {
+    color: #f68320;
+    text-decoration: none;
+  }
+
   .container {
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 15px;
     display: block;
     position: relative;;
+  }
+
+  .row {
+    margin: 0 -15px;
   }
 
   .flex {
@@ -148,5 +157,40 @@
     color: #155724;
     background-color: #d4edda;
     border-color: #c3e6cb;
+  }
+
+  .pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li ~ li {
+    margin-left: 5px;
+  }
+
+  .pagination-active,
+  .pagination-disabled,
+  .pagination-link {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination-link,
+  .pagination-disabled {
+    background: #111;
+    color: #fff;
+  }
+
+  .pagination-link:hover,
+  .pagination-disabled:hover,
+  .pagination-active {
+    background: #f68320;
+    color: #fff;
   }
 </style>
