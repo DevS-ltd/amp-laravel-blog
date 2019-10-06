@@ -42,7 +42,7 @@
                 </amp-carousel>
               @endif
             </div>
-            <div class="post-content">
+            <div class="post-content-wrapper">
               <h3 class="post-title">
                 {{ $post->title }}
               </h3>
