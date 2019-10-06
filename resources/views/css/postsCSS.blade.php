@@ -118,10 +118,6 @@
   }
 
   .post-content {
-    padding: 0 15px 15px;
-  }
-
-  .post-content {
     margin-top: 30px;
     padding-top: 30px;
     border-top: 2px solid #f8f8f8;
@@ -178,7 +174,10 @@
       box-sizing: border-box;
       padding-bottom: 30px;
     }
-    .post-content {
+  }
+
+  @media screen and (min-width: 768px) {
+    .post-content-wrapper {
       padding: 0 30px 30px
     }
   }
