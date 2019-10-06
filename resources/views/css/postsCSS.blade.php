@@ -137,7 +137,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    z-index: 10;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     margin: 0 -4px;
