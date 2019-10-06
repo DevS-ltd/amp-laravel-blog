@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::resource('posts', 'PostController')->only(['index', 'show']);
+Route::get('author/{author}', 'PostController@postsByAuthor')->name('author.posts');
+Route::get('category/{category}', 'PostController@postsByCategory')->name('category.posts');
+
 Route::prefix('manage')
     ->namespace('Manage')
     ->name('manage.')
@@ -26,7 +30,7 @@ Route::prefix('manage')
             return redirect()->route('manage.posts.index');
         });
 
-        Route::resource('posts', 'PostController')->expect('show');
+        Route::resource('posts', 'PostController')->except('show');
 
         Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
         Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');

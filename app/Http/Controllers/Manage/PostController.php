@@ -98,7 +98,12 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $post->update(array_merge(
+            $request->validated(),
+            [
+                'published' => (bool) $request->get('published'),
+            ]
+        ));
 
         $post->categories()->sync($request->get('categories'));
 

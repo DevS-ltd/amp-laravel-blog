@@ -69,7 +69,7 @@
                              id="published"
                              value="1"
                              type="checkbox"
-                             {{ $post->published ?: 'checked' }}> {{ trans('manage.posts.fields.published') }}
+                             {{ $post->published ? 'checked' : '' }}> {{ trans('manage.posts.fields.published') }}
                     </label>
                   </div>
                   @error('published')
@@ -109,6 +109,11 @@
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">{{ trans('manage.general.update') }}</button>
+            <a href="{{ route('posts.show', ['post' => $post->id]) }}"
+               class="btn btn-warning"
+               target="_blank">
+              {{ trans('manage.general.show') }}
+            </a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">
               {{ trans('manage.general.delete') }}
             </button>

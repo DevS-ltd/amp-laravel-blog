@@ -64,7 +64,7 @@
                       @endif
                     @else
                         sorting_desc
-@endif" onClick="sortData('id')">
+                    @endif" onClick="sortData('id')">
                       {{ trans('manage.posts.fields.id') }}
                     </th>
                     <th class="@if(app('request')->input('sort') === 'title')
@@ -92,6 +92,10 @@
                       <td>
                         <a href="{{ route('manage.posts.edit', ['id' => $post->id]) }}">
                           <i class="fa fa-fw fa-edit"></i>
+                        </a>
+                        <a href="{{ route('posts.show', ['post' => $post->id]) }}"
+                           target="_blank">
+                          <i class="fa fa-eye"></i>
                         </a>
                         <a href="{{ route('manage.posts.destroy', ['id' => $post->id]) }}"
                            onclick="event.preventDefault();$('#remove-modal-{{ $post->id }}').modal('show');">

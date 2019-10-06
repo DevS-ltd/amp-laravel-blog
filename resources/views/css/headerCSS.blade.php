@@ -163,6 +163,12 @@
     .dropdown-item {
       padding: 5px 0;
       text-align: center;
+      background-color: #efefef;
+    }
+
+    .dropdown-item:hover {
+      background: #2c333a;
+      color: #fff;
     }
 
     .i-amphtml-accordion-content {

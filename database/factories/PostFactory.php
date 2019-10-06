@@ -29,5 +29,12 @@ $factory->define(Post::class, function (Faker $faker) {
 
 $factory->afterCreating(Post::class, function ($post, $faker) {
     $post->categories()->attach(Category::inRandomOrder()->first());
-    $post->addMediaFromUrl($faker->imageUrl())->toMediaCollection(Post::PREVIEW);
+    $width = 800;
+    $height = 600;
+    $conversions = config('media.conversions');
+    if (in_array('large', $conversions)) {
+        $width = config('media.image_sizes.large.width');
+        $height = config('media.image_sizes.large.height');
+    }
+    $post->addMediaFromUrl($faker->imageUrl($width, $height))->toMediaCollection(Post::PREVIEW);
 });
