@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Requests\Post\ShowPostRequest;
 use App\Http\Requests\Post\GetPostsListRequest;
@@ -43,6 +45,27 @@ class PostController extends Controller
     {
         return view('posts.item', [
             'post' => $post,
+        ]);
+    }
+
+    /**
+     * Display a posts list by user Id.
+     *
+     * @param Request $request
+     * @param User $author
+     * @return \Illuminate\Http\Response
+     */
+    public function postsByAuthor(Request $request, User $author)
+    {
+        $posts = QueryBuilder::for(Post::class)
+            ->defaultSort('-created_at')
+            ->published()
+            ->byUser($author->id)
+            ->with('author')
+            ->paginate($request->input('per_page', 12));
+
+        return view('posts.list', [
+            'posts' => $posts,
         ]);
     }
 }

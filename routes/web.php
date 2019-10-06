@@ -18,9 +18,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::resource('posts', 'PostController')->only(['index', 'show']);
-Route::get('author/{author}', function () {
-    return view('welcome');
-})->name('author.posts');
+Route::get('author/{author}', 'PostController@postsByAuthor')->name('author.posts');
 
 Route::prefix('manage')
     ->namespace('Manage')
