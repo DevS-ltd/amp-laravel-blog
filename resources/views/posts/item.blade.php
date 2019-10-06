@@ -5,13 +5,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="posts__wrapper">
+      <div class="posts-wrapper">
         <div class="post">
-          <div class="bg__white">
+          <div class="bg-white">
             @if($post->user_id === auth()->id())
               <a href="{{ route('manage.posts.edit', ['post' => $post->id]) }}">Edit post</a>
             @endif
-            <div class="post-image__wrapper">
+            <div class="post-image-wrapper">
               @if($post->getMedia(App\Models\Post::PREVIEW)->count() > 0)
                 <amp-carousel height="92"
                               width="288"
@@ -28,22 +28,31 @@
                              alt="{{ $post->title }}">
                       <div fallback>{{ trans('main.notExist') }}</div>
                       <amp-image-lightbox id="lightbox-{{ $media->id }}" layout="nodisplay"></amp-image-lightbox>
+                      <div class="post-categories">
+                        @foreach($post->categories as $category)
+                          <a href="{{ route('category.posts', ['category' => $category->id]) }}"
+                             class="post-categories-link"
+                             on="tap">
+                            {{ $category->name }}
+                          </a>
+                        @endforeach
+                      </div>
                     </amp-img>
                   @endforeach
                 </amp-carousel>
               @endif
             </div>
             <div class="post-content">
-              <h3 class="post__title">
+              <h3 class="post-title">
                 {{ $post->title }}
               </h3>
-              <div class="post__description">
+              <div class="post-description">
                 {{ trans('main.writtenBy') }}
                 <a href="{{ route('author.posts', ['author' => $post->user_id]) }}"
-                   class="post__description-link">{{ $post->author->name }}</a>
+                   class="post-description-link">{{ $post->author->name }}</a>
                 {{ trans('main.on') }} {{ \Carbon\Carbon::parse($post->created_at)->format('F d, Y') }}
               </div>
-              <div class="post__content">
+              <div class="post-content">
                 {!! $post->content !!}
               </div>
             </div>

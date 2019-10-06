@@ -19,6 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::resource('posts', 'PostController')->only(['index', 'show']);
 Route::get('author/{author}', 'PostController@postsByAuthor')->name('author.posts');
+Route::get('category/{category}', 'PostController@postsByCategory')->name('category.posts');
 
 Route::prefix('manage')
     ->namespace('Manage')

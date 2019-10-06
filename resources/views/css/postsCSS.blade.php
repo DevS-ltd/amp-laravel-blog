@@ -1,9 +1,9 @@
 <style>
-  .posts__wrapper {
+  .posts-wrapper {
     padding-top: 15px;
   }
 
-  .post__wrapper {
+  .post-wrapper {
     padding: 0 15px;
   }
 
@@ -16,28 +16,28 @@
     opacity: 0.9;
   }
 
-  .post__title {
+  .post-title {
     padding: 20px 0 10px;
     margin: 0;
   }
 
-  .post__title-link {
+  .post-title-link {
     color: #444;
     text-decoration: none;
   }
 
-  .post__description {
+  .post-description {
     font-size: 11px;
     color: #62707c;
     letter-spacing: 1px;
   }
 
-  .post__description-link {
+  .post-description-link {
     font-weight: 600;
   }
 
-  .post__description-link:hover,
-  .post__title-link:hover {
+  .post-description-link:hover,
+  .post-title-link:hover {
     text-decoration: underline;
   }
 
@@ -101,12 +101,12 @@
     box-sizing: border-box;
   }
 
-  .post__title {
+  .post-title {
     padding: 0 0 20px;
     margin: 0;
   }
 
-  .post-image__wrapper {
+  .post-image-wrapper {
     padding: 0 0 20px;
   }
 
@@ -121,7 +121,7 @@
     padding: 0 15px 15px;
   }
 
-  .post__content {
+  .post-content {
     margin-top: 30px;
     padding-top: 30px;
     border-top: 2px solid #f8f8f8;
@@ -129,12 +129,38 @@
     letter-spacing: 0.5px;
   }
 
-  .post__content p {
+  .post-content p {
     margin: 0 0 10px;
   }
 
+  .post-categories {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -4px;
+  }
+
+  .post-categories-link {
+    font-size: 11px;
+    vertical-align: middle;
+    color: #fff;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: #20252A;
+    padding: 5px 10px;
+    margin: 0 2px 4px;
+  }
+
+  .post-categories-link:hover {
+    background: #f68320;
+  }
+
   @media screen and (max-width: 677px) {
-    .post__wrapper ~ .post__wrapper {
+    .post-wrapper ~ .post-wrapper {
       margin-top: 30px;
       border-top: 1px solid #eee;
       padding-top: 30px;
@@ -142,12 +168,12 @@
   }
 
   @media screen and (min-width: 678px) {
-    .posts__wrapper {
+    .posts-wrapper {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
     }
-    .post__wrapper {
+    .post-wrapper {
       width: 50%;
       box-sizing: border-box;
       padding-bottom: 30px;
@@ -158,10 +184,10 @@
   }
 
   @media screen and (min-width: 992px) {
-    .posts__wrapper {
+    .posts-wrapper {
       padding: 45px 0 15px;
     }
-    .post__wrapper {
+    .post-wrapper {
       width: 33%;
     }
 

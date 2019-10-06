@@ -13,6 +13,6 @@ class ShowPostRequest extends Request
      */
     public function authorize()
     {
-        return $this->post->published && $this->post->user_id === auth()->id();
+        return $this->post->published || $this->post->user_id === auth()->id();
     }
 }
