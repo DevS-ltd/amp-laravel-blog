@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Http\Requests\Post\ShowPostRequest;
 use App\Http\Requests\Post\GetPostsListRequest;
 
 class PostController extends Controller
@@ -22,6 +22,7 @@ class PostController extends Controller
                 'title',
             ])
             ->defaultSort('-created_at')
+            ->published()
             ->with('author')
             ->paginate($request->input('per_page', 12));
         $posts->appends($request->validated())->links();
@@ -34,11 +35,14 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
+     * @param ShowPostRequest $request
      * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(ShowPostRequest $request, Post $post)
     {
-        //
+        return view('posts.item', [
+            'post' => $post,
+        ]);
     }
 }

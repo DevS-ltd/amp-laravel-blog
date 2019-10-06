@@ -3,7 +3,7 @@
     padding-top: 15px;
   }
 
-  .post-element__wrapper {
+  .post__wrapper {
     padding: 0 15px;
   }
 
@@ -16,33 +16,125 @@
     opacity: 0.9;
   }
 
-  .post-element__title {
+  .post__title {
     padding: 20px 0 10px;
     margin: 0;
   }
 
-  .post-element__title-link {
+  .post__title-link {
     color: #444;
     text-decoration: none;
   }
 
-  .post-element__description {
+  .post__description {
     font-size: 11px;
     color: #62707c;
     letter-spacing: 1px;
   }
 
-  .post-element__description-link {
+  .post__description-link {
     font-weight: 600;
   }
 
-  .post-element__description-link:hover,
-  .post-element__title-link:hover {
+  .post__description-link:hover,
+  .post__title-link:hover {
     text-decoration: underline;
   }
 
+  .widget {
+    padding: 20px 15px 45px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .subscribe-widget {
+    background: #2C333A;
+    padding: 20px 30px 20px;
+    color: #eee;
+  }
+
+  .widget-header {
+    font-size: 14px;
+    padding: 5px 0 5px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 7px;
+  }
+
+  .widget-description {
+    font-size: 14px;
+    line-height: 20px;
+    color: #eee;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px;
+  }
+
+  .widget-input {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    color: #666;
+    font-size: 12px;
+    margin: 0 0 10px;
+    text-align: center;
+    outline: none;
+    padding: 0 10px;
+    width: 100%;
+    height: 34px;
+    font-weight: 400;
+    box-sizing: border-box;
+  }
+
+  .widget-button {
+    letter-spacing: 0.5px;
+    background: #f68320;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 25px;
+    -webkit-appearance: none;
+    text-transform: uppercase;
+    margin: 0;
+    width: 100%;
+    height: 34px;
+    box-sizing: border-box;
+  }
+
+  .post__title {
+    padding: 0 0 20px;
+    margin: 0;
+  }
+
+  .post-image__wrapper {
+    padding: 0 0 20px;
+  }
+
+  .post {
+    box-sizing: border-box;
+    padding: 0 15px;
+    width: 100%;
+    position: relative;
+  }
+
+  .post-content {
+    padding: 0 15px 15px;
+  }
+
+  .post__content {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid #f8f8f8;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .post__content p {
+    margin: 0 0 10px;
+  }
+
   @media screen and (max-width: 677px) {
-    .post-element__wrapper ~ .post-element__wrapper {
+    .post__wrapper ~ .post__wrapper {
       margin-top: 30px;
       border-top: 1px solid #eee;
       padding-top: 30px;
@@ -55,10 +147,13 @@
       flex-wrap: wrap;
       justify-content: space-around;
     }
-    .post-element__wrapper {
+    .post__wrapper {
       width: 50%;
       box-sizing: border-box;
       padding-bottom: 30px;
+    }
+    .post-content {
+      padding: 0 30px 30px
     }
   }
 
@@ -66,8 +161,16 @@
     .posts__wrapper {
       padding: 45px 0 15px;
     }
-    .post-element__wrapper {
+    .post__wrapper {
       width: 33%;
+    }
+
+    .widget {
+      width: 25%;
+    }
+
+    .post {
+      width: 75%;
     }
   }
 </style>

@@ -68,7 +68,7 @@
                              id="published"
                              value="1"
                              type="checkbox"
-                             {{ old('published') ?: 'checked' }}> {{ trans('manage.posts.fields.published') }}
+                             {{ old('published') ? 'checked' : '' }}> {{ trans('manage.posts.fields.published') }}
                     </label>
                   </div>
                   @error('published')
