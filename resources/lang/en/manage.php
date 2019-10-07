@@ -59,6 +59,9 @@ return [
             'avatar' => 'Avatar',
             'name' => 'Name',
             'email' => 'Email',
+            'oldPassword' => 'Old password',
+            'newPassword' => 'New password',
+            'confirmPassword' => 'Confirm password',
         ],
 
         'modals' => [
@@ -67,6 +70,10 @@ return [
                 'body' => 'Are you sure you want to delete the avatar?',
                 'button' => 'Delete Avatar',
             ],
+        ],
+
+        'password' => [
+            'incorrect' => 'Old Password did not match to our records.',
         ],
 
         'updated' => 'Your profile updated successfully.',

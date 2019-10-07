@@ -18,5 +18,10 @@
         @include('manage.profile.forms.userData')
       </div>
     </div>
+    <div class="col-md-12">
+      <div class="box box-primary">
+        @include('manage.profile.forms.passwordReset')
+      </div>
+    </div>
   </div>
 @endsection

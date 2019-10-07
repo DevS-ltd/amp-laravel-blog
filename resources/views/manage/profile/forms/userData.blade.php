@@ -77,7 +77,7 @@
       @enderror
     </div>
 
-    <div class="form-group @error('annotation') has-error @enderror">
+    <div class="form-group">
       <label for="email">{{ trans('manage.profile.fields.email') }}</label>
       <input name="email"
              id="email"

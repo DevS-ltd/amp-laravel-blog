@@ -39,6 +39,7 @@ Route::prefix('manage')
             ->group(function () {
                 Route::get('/', 'ProfileController@edit')->name('edit');
                 Route::post('/', 'ProfileController@update')->name('update');
+                Route::post('password', 'PasswordController')->name('password.update');
             });
 
         Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
