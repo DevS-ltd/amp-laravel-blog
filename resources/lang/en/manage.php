@@ -51,4 +51,24 @@ return [
         'deleted' => 'The post deleted successfully.',
         'updated' => 'The post updated successfully.',
     ],
+
+    'profile' => [
+        'title' => 'Update Profile',
+
+        'fields' => [
+            'avatar' => 'Avatar',
+            'name' => 'Name',
+            'email' => 'Email',
+        ],
+
+        'modals' => [
+            'avatar' => [
+                'title' => 'Delete Avatar',
+                'body' => 'Are you sure you want to delete the avatar?',
+                'button' => 'Delete Avatar',
+            ],
+        ],
+
+        'updated' => 'Your profile updated successfully.',
+    ],
 ];

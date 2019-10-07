@@ -211,6 +211,10 @@
     }
 
     function parseQueryString(url = window.location.href) {
+      if (url.indexOf('?') === -1) {
+        return [];
+      }
+
       return url.slice(url.indexOf('?') + 1)
         .match(/[\w\d%\-!.~'()\*]+=[\w\d%\-!.~'()\*]+/g)
         .map(s => s.split('=').map(decodeURIComponent))

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Image;
 
+use App\Models\Post;
+use App\Models\User;
 use App\Http\Requests\BaseRequest as Request;
 
 class DeleteMediaRequest extends Request
@@ -13,6 +15,13 @@ class DeleteMediaRequest extends Request
      */
     public function authorize()
     {
-        return $this->media->model->user_id === auth()->id();
+        switch ($this->media->model_type) {
+            case User::class:
+                return $this->media->model->id === auth()->id();
+            case Post::class:
+                return $this->media->model->user_id === auth()->id();
+            default:
+                return false;
+        }
     }
 }
