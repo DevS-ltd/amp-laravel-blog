@@ -34,6 +34,14 @@ Route::prefix('manage')
 
         Route::resource('posts', 'PostController')->except('show');
 
+        Route::prefix('profile')
+            ->name('profile.')
+            ->group(function () {
+                Route::get('/', 'ProfileController@edit')->name('edit');
+                Route::post('/', 'ProfileController@update')->name('update');
+                Route::post('password', 'PasswordController')->name('password.update');
+            });
+
         Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
         Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');
     });

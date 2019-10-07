@@ -51,4 +51,31 @@ return [
         'deleted' => 'The post deleted successfully.',
         'updated' => 'The post updated successfully.',
     ],
+
+    'profile' => [
+        'title' => 'Update Profile',
+
+        'fields' => [
+            'avatar' => 'Avatar',
+            'name' => 'Name',
+            'email' => 'Email',
+            'oldPassword' => 'Old password',
+            'newPassword' => 'New password',
+            'confirmPassword' => 'Confirm password',
+        ],
+
+        'modals' => [
+            'avatar' => [
+                'title' => 'Delete Avatar',
+                'body' => 'Are you sure you want to delete the avatar?',
+                'button' => 'Delete Avatar',
+            ],
+        ],
+
+        'password' => [
+            'incorrect' => 'Old Password did not match to our records.',
+        ],
+
+        'updated' => 'Your profile updated successfully.',
+    ],
 ];

@@ -1,10 +1,13 @@
 @auth
+  @php
+    $avatar = auth()->user()->getMedia(\App\Models\User::AVATAR)->first()
+  @endphp
   <amp-accordion class="sidebar-profile__wrapper" animate>
     <section>
       <div class="sidebar-profile__data">
         <div class="flex align__center">
           <amp-img class="avatar"
-                   src="{{ auth()->user()->avatar }}"
+                   src="{{ $avatar ? $avatar->getUrl() : '' }}"
                    width="40"
                    height="40"
                    layout="responsive">
@@ -17,7 +20,7 @@
         <a class="dropdown-item" href="{{ route('manage.posts.index') }}">
           {{ trans('main.links.myPosts') }}
         </a>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="{{ route('manage.profile.edit') }}">
           {{ trans('main.links.profile') }}
         </a>
         <a class="dropdown-item"
