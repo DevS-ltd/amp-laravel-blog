@@ -40,5 +40,9 @@
       display: flex;
       justify-content: space-between;
     }
+
+    .footer-block {
+      padding: 20px 0;
+    }
   }
 </style>
