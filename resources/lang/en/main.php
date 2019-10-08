@@ -23,4 +23,7 @@ return [
     'company' => [
         'title' => 'Helping You Build a Best App',
     ],
+
+    'developedBy' => 'Developed by',
+    'direct' => 'Contact us directly',
 ];

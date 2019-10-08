@@ -22,7 +22,7 @@
           <a href="{{ route('posts.index') }}" class="color__white">{{ trans('main.links.blog') }}</a>
         </li>
         <li class="footer-menu-item">
-          <a href="#" class="color__white">{{ trans('main.links.contacts') }}</a>
+          <a href="{{ route('contacts') }}" class="color__white">{{ trans('main.links.contacts') }}</a>
         </li>
       </ul>
       <div class="footer-tagline">

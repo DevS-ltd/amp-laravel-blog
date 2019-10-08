@@ -4,8 +4,16 @@
   }
 
   body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
     background: #f8f8f8;
     color: #444;
+  }
+
+  #app {
+    flex-grow: 1;
   }
 
   a {

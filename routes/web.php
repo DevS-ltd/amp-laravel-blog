@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('posts.index');
 });
 
 Auth::routes(['verify' => true]);
@@ -20,6 +20,9 @@ Auth::routes(['verify' => true]);
 Route::resource('posts', 'PostController')->only(['index', 'show']);
 Route::get('author/{author}', 'PostController@postsByAuthor')->name('author.posts');
 Route::get('category/{category}', 'PostController@postsByCategory')->name('category.posts');
+Route::get('contacts', function () {
+    return view('contacts');
+})->name('contacts');
 
 Route::post('subscribe', 'SubscribeController')->name('subscribe');
 

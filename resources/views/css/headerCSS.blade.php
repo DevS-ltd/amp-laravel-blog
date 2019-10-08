@@ -81,6 +81,7 @@
 
   .social__link {
     fill: #2c333a;
+    fill-rule: evenodd;
   }
 
   @media screen and (max-width: 991px) {
