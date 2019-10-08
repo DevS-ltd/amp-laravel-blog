@@ -30,6 +30,8 @@
   <main class="content__wrapper">
     @yield('content')
   </main>
+
 </div>
+@include('components.footer')
 </body>
 </html>

@@ -19,4 +19,8 @@ return [
         'subscribed' => 'Congratulations! Your subscription to our list has been confirmed.',
     ],
 
+    'categories' => 'Categories',
+    'company' => [
+        'title' => 'Helping You Build a Best App',
+    ],
 ];

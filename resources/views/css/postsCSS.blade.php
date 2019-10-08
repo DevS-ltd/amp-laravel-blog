@@ -1,6 +1,6 @@
 <style>
   .posts-wrapper {
-    padding-top: 15px;
+    padding: 15px 0;
   }
 
   .post-wrapper {
