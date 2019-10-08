@@ -77,13 +77,20 @@
       @enderror
     </div>
 
-    <div class="form-group">
+    <div class="form-group @if(auth()->user()->hasVerifiedEmail() === false) has-error @endif">
       <label for="email">{{ trans('manage.profile.fields.email') }}</label>
       <input name="email"
              id="email"
              value="{{ $user->email }}"
              class="form-control"
              readonly>
+      @if(auth()->user()->hasVerifiedEmail() === false)
+        <span class="help-block">
+          {{ __('Before proceeding, please check your email for a verification link.') }}
+            {{ __('Verify Your Email Address. If you did not receive the email') }},
+          <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+        </span>
+      @endif
     </div>
 
   </div>

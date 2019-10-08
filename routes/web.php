@@ -48,7 +48,3 @@ Route::prefix('manage')
         Route::post('upload/image', 'ImageController@uploadCkeditorImage')->name('upload.ckeditor-image');
         Route::delete('media/{media}', 'ImageController@deleteMedia')->name('delete.media');
     });
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware(['verified', 'auth']);
